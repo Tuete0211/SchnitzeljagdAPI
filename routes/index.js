@@ -33,31 +33,16 @@ router.get('/routes', function (req, res) {
     });
 });
 
-/*
-router.get('/all', function (req, res) {
-   var MongoClient = mongodb.MongoClient;
-
-   var url = 'mongodb://localhost:27017/shDB';
-
-   MongoClient.connect(url, function (err, db) {
-       if(err){
-           console.log('Unable to connect to server', err);
-       }else{
-           console.log('Connection Established');
-           var collection = db.collection('sh');
-           collection.find({}).toArray(function (err, result) {
-               if(err){
-                   res.send(err);
-               }else if (result.length){
-                   res.json(result);
-               }else {
-                   res.send('No doc found');
-               }
-               db.close();
-           });
-       }
-   })
-});
-*/
+router.get('/station/:number', function (req, res) {
+    Station.find({number: req.params.number.toUpperCase()
+    }, function (err, stations) {
+        if (err) {
+            return console.error(err);
+        }
+        else {
+            res.json(stations);
+        }
+    });
+})
 
 module.exports = router;
