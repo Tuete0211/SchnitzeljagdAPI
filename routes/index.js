@@ -35,7 +35,7 @@ router.get('/routes', function (req, res) {
 
 router.get('/stationsByName/:name', function (req, res) {
     Station.find({
-        name: req.params.name.toString()
+        name: req.params.name
     }, function (err, stations) {
         if (err) {
             return console.error(err);
@@ -44,6 +44,20 @@ router.get('/stationsByName/:name', function (req, res) {
             res.json(stations);
         }
     });
-})
+});
+
+router.get('/stationsByNumber/:number', function (req, res) {
+    Station.find({
+        number: req.params.number
+    }, function (err, stations) {
+        if (err) {
+            return console.error(err);
+        }
+        else {
+            res.json(stations);
+        }
+    });
+});
+
 
 module.exports = router;
