@@ -33,8 +33,9 @@ router.get('/routes', function (req, res) {
     });
 });
 
-router.get('/station/:number', function (req, res) {
-    Station.find({number: req.params.number.toUpperCase()
+router.get('/stationsByNumber/:number', function (req, res) {
+    Station.find({
+        number: req.params.number
     }, function (err, stations) {
         if (err) {
             return console.error(err);
