@@ -33,9 +33,9 @@ router.get('/routes', function (req, res) {
     });
 });
 
-router.get('/stationsByNumber/:number', function (req, res) {
+router.get('/stationsByName/:name', function (req, res) {
     Station.find({
-        number: req.params.number
+        name: req.params.name.toString()
     }, function (err, stations) {
         if (err) {
             return console.error(err);
